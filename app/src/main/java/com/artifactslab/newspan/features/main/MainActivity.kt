@@ -49,6 +49,9 @@ class MainActivity : AppCompatActivity(), MainActivityView {
 
         runOnUiThread {
             recyclerViewNewsHeadlines.layoutManager = LinearLayoutManager(this)
+
+
+
             recyclerViewNewsHeadlines.adapter = MainAdapter(list) { news -> openDetailsActivity(news.description + "\n\n" + news.content) }
         }
     }
