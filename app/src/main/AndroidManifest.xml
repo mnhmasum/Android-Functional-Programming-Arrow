@@ -18,6 +18,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:label="@string/details_view_title"
+            android:name="com.artifactslab.newspan.features.details.DetailsActivity"/>
     </application>
 
 </manifest>

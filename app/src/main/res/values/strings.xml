@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">HelloArrowWorld</string>
+    <string name="app_name">Top News Headlines</string>
+    <string name="details_view_title">Details</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.artifactslab.newspan.features.main
 
+import android.content.Intent
 import android.opengl.Visibility
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -12,6 +13,7 @@ import arrow.effects.IO
 import arrow.syntax.function.pipe
 import com.artifactslab.helloarrow.R
 import com.artifactslab.newspan.dto.ArticlesItem
+import com.artifactslab.newspan.features.details.DetailsActivity
 import com.artifactslab.newspan.retrofit.apiClient
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -31,14 +33,23 @@ class MainActivity : AppCompatActivity(), MainActivityView {
 
     override fun hideLoading() {
         runOnUiThread {
-                progressBar.visibility = INVISIBLE
+            progressBar.visibility = INVISIBLE
         }
     }
 
     override fun showList(list: List<ArticlesItem>) {
+
+        var openDetailsActivity = fun(value: String) {
+            val intent = Intent(this, DetailsActivity::class.java)
+            var bundle = Bundle()
+            bundle.putString("desc", value)
+            intent.putExtras(bundle)
+            startActivity(intent)
+        }
+
         runOnUiThread {
             recyclerViewNewsHeadlines.layoutManager = LinearLayoutManager(this)
-            recyclerViewNewsHeadlines.adapter = MainAdapter(list) { news -> Log.d("Click", "Got a click! " + news.title) }
+            recyclerViewNewsHeadlines.adapter = MainAdapter(list) { news -> openDetailsActivity(news.description + "\n\n" + news.content) }
         }
     }
 

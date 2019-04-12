@@ -30,7 +30,7 @@ class MainAdapter(
                     .with(view.context)
                     .load(article.urlToImage)
                     .centerCrop()
-                    .placeholder(R.mipmap.ic_launcher_round)
+                    .placeholder(R.drawable.ic_thumbnails)
                     .into(view.imageView)
 
             view.setOnClickListener { itemClick(article) }
