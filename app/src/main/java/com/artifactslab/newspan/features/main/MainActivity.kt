@@ -1,16 +1,11 @@
 package com.artifactslab.newspan.features.main
 
 import android.content.Intent
-import android.opengl.Visibility
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
-import arrow.core.Either
-import arrow.effects.IO
-import arrow.syntax.function.pipe
 import com.artifactslab.helloarrow.R
 import com.artifactslab.newspan.dto.ArticlesItem
 import com.artifactslab.newspan.features.details.DetailsActivity
@@ -38,7 +33,6 @@ class MainActivity : AppCompatActivity(), MainActivityView {
     }
 
     override fun showList(list: List<ArticlesItem>) {
-
         var openDetailsActivity = fun(value: String) {
             val intent = Intent(this, DetailsActivity::class.java)
             var bundle = Bundle()
@@ -49,9 +43,6 @@ class MainActivity : AppCompatActivity(), MainActivityView {
 
         runOnUiThread {
             recyclerViewNewsHeadlines.layoutManager = LinearLayoutManager(this)
-
-
-
             recyclerViewNewsHeadlines.adapter = MainAdapter(list) { news -> openDetailsActivity(news.description + "\n\n" + news.content) }
         }
     }
