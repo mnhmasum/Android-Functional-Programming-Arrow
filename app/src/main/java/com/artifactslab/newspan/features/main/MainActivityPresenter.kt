@@ -30,17 +30,6 @@ fun getNews(): Reader<MainActivityContext, Unit> =
                     }
                 }
 
-fun fetchAllRepositories(): Reader<MainActivityContext, IO<String>> =
-        ReaderApi.ask<MainActivityContext>().map { deps ->
-            IO { "Hello" }
-                    .flatMap { IO { "$it Arrow" } }
-                    .map { "$it World" }
-
-        }
-
-fun parseInput(e: Either<Throwable, String>, view: MainActivityView) =
-        e.fold({ view.showMessage("Error") },
-                { r -> view.showMessage(r) })
 
 fun parseInput1(e: Either<Throwable, List<ArticlesItem>?>, view: MainActivityView) =
         e.fold({ view.showMessage("Error in parse ") },
@@ -74,4 +63,15 @@ private fun queryForRepositories(apiClient: ApiClient): Try<List<ArticlesItem>?>
         }
 
 
+fun fetchAllRepositories(): Reader<MainActivityContext, IO<String>> =
+        ReaderApi.ask<MainActivityContext>().map { deps ->
+            IO { "Hello" }
+                    .flatMap { IO { "$it Arrow" } }
+                    .map { "$it World" }
+
+        }
+
+fun parseInput(e: Either<Throwable, String>, view: MainActivityView) =
+        e.fold({ view.showMessage("Error") },
+                { r -> view.showMessage(r) })
 
